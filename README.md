@@ -1,4 +1,4 @@
-# cloud-itonami-8610
+# cloud-itonami-isic-8610
 
 Open Business Blueprint for **ISIC Rev.5 8610**: Hospital activities.
 

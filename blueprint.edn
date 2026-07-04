@@ -1,4 +1,4 @@
-{:itonami.blueprint/id "cloud-itonami-8610"
+{:itonami.blueprint/id "cloud-itonami-isic-8610"
  :itonami.blueprint/name "Hospital activities"
  :itonami.blueprint/isic-rev5 "8610"
  :itonami.blueprint/domain :health/hospital

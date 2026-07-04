@@ -2,7 +2,7 @@
 
 ## Classification
 
-- Repository: `cloud-itonami-8610`
+- Repository: `cloud-itonami-isic-8610`
 - ISIC Rev.5: `8610`
 - Activity: hospital activities -- inpatient medical, surgical and diagnostic services under licensed medical staff
 - Social impact: care quality, data sovereignty, transparent audit

@@ -1,6 +1,6 @@
 # Governance
 
-`cloud-itonami-8610` is an OSS open-business blueprint for hospital activities -- inpatient medical, surgical and diagnostic services under licensed medical staff.
+`cloud-itonami-isic-8610` is an OSS open-business blueprint for hospital activities -- inpatient medical, surgical and diagnostic services under licensed medical staff.
 Governance covers both the capability layer and the operator model.
 
 ## Maintainers
