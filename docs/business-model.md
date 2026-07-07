@@ -30,8 +30,16 @@
 
 ## Trust Controls
 
-- no treatment or discharge is administered without human sign-off (licensed medical staff)
-- a fabricated diagnostic rationale forces a hold, not an override
-- every treatment path is auditable
+- no treatment is administered and no discharge is authorized without
+  human sign-off (a licensed clinician)
+- a fabricated jurisdiction citation, incomplete clinical evidence, an
+  insufficient post-procedure observation period, or a not-current
+  clinician license -- each forces a hold, not an override
+- an admission's treatment/discharge cannot each be finalized twice: a
+  double-administration or double-discharge attempt is held off this
+  actor's own admission facts alone, with no upstream comparison
+  needed
+- every intake, assessment, screening and administration/discharge
+  path is auditable
 - patient health data stays outside Git
 - emergency manual override paths remain outside LLM control
