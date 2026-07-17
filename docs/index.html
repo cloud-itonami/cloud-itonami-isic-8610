@@ -176,50 +176,61 @@
 <body>
     <header>
         <h1>Hospital activities</h1>
-        <p>ISIC Rev.5 8610 — Open business blueprint for inpatient care</p>
+        <p>ISIC 8610 — Governed inpatient care with independent clinical oversight</p>
     </header>
 
     <div class="container">
         <section>
-            <div class="badge">Open source & forkable</div>
-            <h2>What this is</h2>
-            <p>A hospital actor for inpatient-admission intake, jurisdiction assessment, credential screening, treatment administration, and discharge authorization. The HospitalOps-LLM proposes clinical actions, but an independent Clinical Oversight Governor validates every decision against jurisdiction-specific regulations and clinical evidence — and a human licensed clinician always approves treatment and discharge.</p>
-            <p>Built on a governed, spec-cited, audited execution scaffold so any qualified hospital operator can fork this repo, deploy it, run it, and extend it without building the compliance layer from scratch.</p>
-            <p>This is not just code: it's a complete open business model including governance, trust controls, and an operator playbook for self-hosting in your jurisdiction.</p>
+            <h2>The problem</h2>
+            <p>LLMs excel at drafting admission records and checking observation windows, but they have no jurisdiction hospital-institution license, no authority to administer treatment, and no way to verify if a clinician's license is current. Letting one act alone creates patient safety risk and liability.</p>
+            <p>An independent, spec-cited governor is not optional—it's the compliance layer you shouldn't have to build from scratch.</p>
         </section>
 
         <section>
-            <h2>Core capabilities</h2>
+            <div class="badge">Open source & forkable</div>
+            <h2>Our answer: HospitalOps-LLM ⊣ Clinical Oversight Governor</h2>
+            <p>The LLM proposes clinical actions. An independent Governor validates every decision against jurisdiction-specific regulations and clinician credentials. Humans always approve treatment and discharge—hard holds on fabricated citations, stale licenses, and insufficient evidence are never overridden.</p>
+            <p>This is not just code: it's a complete open business model—architecture, trust controls, and an operator playbook—so any licensed hospital can fork, deploy, run, and extend it without rebuilding compliance from scratch.</p>
+        </section>
+
+        <section>
+            <h2>What this covers</h2>
             <ul class="links">
                 <li><strong>Admission intake:</strong> Patient registration and initial triage</li>
                 <li><strong>Jurisdiction assessment:</strong> Compliance with hospital-institution licensing requirements (spec-cited per jurisdiction)</li>
                 <li><strong>Credential screening:</strong> Verification that treating clinician licenses are current</li>
-                <li><strong>Treatment administration:</strong> LLM-drafted proposals with human sign-off (never autonomous)</li>
-                <li><strong>Discharge authorization:</strong> Post-procedure observation verification with human approval (never autonomous)</li>
-                <li><strong>Immutable audit ledger:</strong> Every intake, assessment, screening, and actuation decision is logged</li>
+                <li><strong>Treatment administration:</strong> LLM-drafted proposals; human sign-off always required</li>
+                <li><strong>Discharge authorization:</strong> Post-procedure observation verified; human approval always required</li>
+                <li><strong>Immutable audit ledger:</strong> Every intake, assessment, screening, and actuation decision logged</li>
             </ul>
         </section>
 
         <section>
-            <h2>Trust & safety</h2>
+            <h2>What this is not</h2>
+            <p>This actor does <strong>not</strong> hold or grant hospital licenses (operators supply their own jurisdiction-specific license). It does not model a full clinical-decision-support engine—no procedure-specific recovery protocols, no readmission-risk scoring, no ward-care workflows.</p>
+            <p>It is an honest, governed execution scaffold for inpatient intake through discharge authorization, nothing more. Whoever deploys and operates it supplies the clinical expertise, hospital-information-system integration, and bears the jurisdiction's liability.</p>
+        </section>
+
+        <section>
+            <h2>Why independent governance matters</h2>
             <ul class="links">
-                <li>No treatment is administered and no discharge is authorized without human clinician sign-off</li>
-                <li>Fabricated jurisdiction citations, incomplete clinical evidence, insufficient observation periods, and stale clinician licenses each force a hold — never an override</li>
+                <li>No treatment is administered and no discharge authorized without human clinician sign-off</li>
+                <li>Fabricated jurisdiction citations, incomplete clinical evidence, insufficient observation periods, and stale clinician licenses each force a hard hold—never an override</li>
                 <li>Double administration and double discharge guards prevent repeated actions on the same admission</li>
-                <li>Patient health data stays outside Git; emergency manual overrides remain outside LLM control</li>
+                <li>Audit ledger captures every decision; patient health data stays outside Git</li>
             </ul>
         </section>
 
         <section>
-            <h2>Get started</h2>
-            <p><strong>For operators:</strong> See <a href="operator-quickstart.md">operator-quickstart.md</a> for prerequisites, how to run tests, and where the governor code lives.</p>
-            <p><strong>For developers:</strong> Start with the <a href="../README.md">repository README</a> for architecture, design decisions, and detailed capability coverage.</p>
-            <p><strong>For business context:</strong> See <a href="business-model.md">business-model.md</a> for the open business model, customer profiles, and revenue structure.</p>
-
+            <h2>Next steps</h2>
             <div class="cta-group">
-                <a href="https://itonami.cloud/isco-1212/" class="cta cta-primary">Fork & self-host on itonami.cloud</a>
-                <a href="https://itonami.cloud/docs/go-live.md" class="cta cta-secondary">Managed hosting & support</a>
+                <a href="https://itonami.cloud/isco-1212/" class="cta cta-primary">Claim your free tenant</a>
+                <a href="https://itonami.cloud/docs/go-live.md" class="cta cta-secondary">Go-live with managed hosting</a>
             </div>
+
+            <p style="margin-top: 30px;">
+                <strong>Get started locally:</strong> See <a href="operator-quickstart.md">operator-quickstart.md</a> for prerequisites, tests, and where the Clinical Oversight Governor code lives. Start with <a href="https://github.com/com-junkawasaki/cloud-itonami-isic-8610">the GitHub repository</a> for the full architecture and design decisions.
+            </p>
         </section>
 
         <section>

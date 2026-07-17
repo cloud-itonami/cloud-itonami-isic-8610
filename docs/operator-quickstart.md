@@ -1,5 +1,11 @@
 # Operator Quickstart
 
+## Who this is for
+
+You are a licensed hospital operator in a jurisdiction where you hold (or can obtain) a hospital-institution license. You want to deploy a governed system for inpatient admission intake, credential screening, treatment administration, and discharge authorization—without rebuilding the compliance layer from scratch. You'll fork this repo, override the dependency paths for your own deployment, and extend the governor with your jurisdiction's specific licensing requirements.
+
+This is **not** for building a generic hospital SaaS. This is for licensed operators running a real hospital.
+
 ## Prerequisites
 
 - **Clojure CLI** (`clojure` / `clj`) installed
