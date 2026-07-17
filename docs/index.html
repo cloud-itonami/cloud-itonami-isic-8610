@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital activities — ISIC 8610</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: #e0e0e0;
+            }
+        }
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        @media (prefers-color-scheme: dark) {
+            header {
+                background: linear-gradient(135deg, #1a5acc 0%, #0d2e66 100%);
+            }
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        section {
+            margin-bottom: 50px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        @media (prefers-color-scheme: dark) {
+            section {
+                background: #2a2a2a;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            }
+        }
+        section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #0066cc;
+        }
+        @media (prefers-color-scheme: dark) {
+            section h2 {
+                color: #66b3ff;
+            }
+        }
+        section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .cta {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+        .cta-primary {
+            background: #0066cc;
+            color: white;
+        }
+        .cta-primary:hover {
+            background: #0052a3;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+        @media (prefers-color-scheme: dark) {
+            .cta-primary {
+                background: #1a5acc;
+            }
+            .cta-primary:hover {
+                background: #0d2e66;
+            }
+        }
+        .cta-secondary {
+            background: transparent;
+            color: #0066cc;
+            border-color: #0066cc;
+        }
+        .cta-secondary:hover {
+            background: #f0f7ff;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+        }
+        @media (prefers-color-scheme: dark) {
+            .cta-secondary {
+                color: #66b3ff;
+                border-color: #66b3ff;
+            }
+            .cta-secondary:hover {
+                background: rgba(26, 90, 204, 0.2);
+            }
+        }
+        .links {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .links li {
+            margin-bottom: 12px;
+        }
+        .links a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        @media (prefers-color-scheme: dark) {
+            .links a {
+                color: #66b3ff;
+            }
+        }
+        .badge {
+            display: inline-block;
+            background: #e6f2ff;
+            color: #0066cc;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .badge {
+                background: rgba(26, 90, 204, 0.3);
+                color: #66b3ff;
+            }
+        }
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        @media (prefers-color-scheme: dark) {
+            footer {
+                color: #999;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hospital activities</h1>
+        <p>ISIC Rev.5 8610 — Open business blueprint for inpatient care</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <div class="badge">Open source & forkable</div>
+            <h2>What this is</h2>
+            <p>A hospital actor for inpatient-admission intake, jurisdiction assessment, credential screening, treatment administration, and discharge authorization. The HospitalOps-LLM proposes clinical actions, but an independent Clinical Oversight Governor validates every decision against jurisdiction-specific regulations and clinical evidence — and a human licensed clinician always approves treatment and discharge.</p>
+            <p>Built on a governed, spec-cited, audited execution scaffold so any qualified hospital operator can fork this repo, deploy it, run it, and extend it without building the compliance layer from scratch.</p>
+            <p>This is not just code: it's a complete open business model including governance, trust controls, and an operator playbook for self-hosting in your jurisdiction.</p>
+        </section>
+
+        <section>
+            <h2>Core capabilities</h2>
+            <ul class="links">
+                <li><strong>Admission intake:</strong> Patient registration and initial triage</li>
+                <li><strong>Jurisdiction assessment:</strong> Compliance with hospital-institution licensing requirements (spec-cited per jurisdiction)</li>
+                <li><strong>Credential screening:</strong> Verification that treating clinician licenses are current</li>
+                <li><strong>Treatment administration:</strong> LLM-drafted proposals with human sign-off (never autonomous)</li>
+                <li><strong>Discharge authorization:</strong> Post-procedure observation verification with human approval (never autonomous)</li>
+                <li><strong>Immutable audit ledger:</strong> Every intake, assessment, screening, and actuation decision is logged</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Trust & safety</h2>
+            <ul class="links">
+                <li>No treatment is administered and no discharge is authorized without human clinician sign-off</li>
+                <li>Fabricated jurisdiction citations, incomplete clinical evidence, insufficient observation periods, and stale clinician licenses each force a hold — never an override</li>
+                <li>Double administration and double discharge guards prevent repeated actions on the same admission</li>
+                <li>Patient health data stays outside Git; emergency manual overrides remain outside LLM control</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Get started</h2>
+            <p><strong>For operators:</strong> See <a href="operator-quickstart.md">operator-quickstart.md</a> for prerequisites, how to run tests, and where the governor code lives.</p>
+            <p><strong>For developers:</strong> Start with the <a href="../README.md">repository README</a> for architecture, design decisions, and detailed capability coverage.</p>
+            <p><strong>For business context:</strong> See <a href="business-model.md">business-model.md</a> for the open business model, customer profiles, and revenue structure.</p>
+
+            <div class="cta-group">
+                <a href="https://itonami.cloud/isco-1212/" class="cta cta-primary">Fork & self-host on itonami.cloud</a>
+                <a href="https://itonami.cloud/docs/go-live.md" class="cta cta-secondary">Managed hosting & support</a>
+            </div>
+        </section>
+
+        <section>
+            <h2>License & governance</h2>
+            <p>Code and implementation templates are AGPL-3.0-or-later. This project is governed via <a href="../GOVERNANCE.md">GOVERNANCE.md</a> and maintains the social-impact commitments of care quality, data sovereignty, and transparent audit.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>cloud-itonami-isic-8610 — Hospital activities blueprint</p>
+        <p><a href="https://github.com/com-junkawasaki/cloud-itonami-isic-8610" style="color: inherit;">GitHub</a></p>
+    </footer>
+</body>
+</html>
