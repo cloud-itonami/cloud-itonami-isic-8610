@@ -42,10 +42,9 @@
   the audit trail a patient trusting a hospital needs, and the
   evidence an operator needs if a treatment or discharge is later
   disputed."
-  (:require #?(:clj  [clojure.edn :as edn]
-               :cljs [cljs.reader :as edn])
-            [hospital.registry :as registry]
-            [langchain.db :as d]))
+  (:require [hospital.registry :as registry]
+            [langchain.db :as d]
+            [langchain-store.core :as ls]))
 
 (defprotocol Store
   (admission [s id])
@@ -183,18 +182,14 @@
   Map/compound values (assessment/credential payloads, ledger facts,
   treatment/discharge records) are stored as EDN strings so
   `langchain.db` doesn't expand them into sub-entities -- the same
-  convention every sibling actor's store uses."
-  {:admission/id                     {:db/unique :db.unique/identity}
-   :assessment/admission-id          {:db/unique :db.unique/identity}
-   :credential-screening/admission-id {:db/unique :db.unique/identity}
-   :ledger/seq                       {:db/unique :db.unique/identity}
-   :treatment/seq                    {:db/unique :db.unique/identity}
-   :discharge/seq                    {:db/unique :db.unique/identity}
-   :treatment-sequence/jurisdiction  {:db/unique :db.unique/identity}
-   :discharge-sequence/jurisdiction  {:db/unique :db.unique/identity}})
-
-(defn- enc [v] (pr-str v))
-(defn- dec* [s] (when s (edn/read-string s)))
+  convention every sibling actor's store uses. The identity-schema
+  builder, EDN-blob codec and seq-keyed event-log read/append are the
+  shared kotoba-lang/langchain-store machinery (ADR-2607141600) -- the
+  seam ~190 actors hand-roll; this store keeps only its domain wiring."
+  (ls/identity-schema
+   [:admission/id :assessment/admission-id :credential-screening/admission-id
+    :ledger/seq :treatment/seq :discharge/seq
+    :treatment-sequence/jurisdiction :discharge-sequence/jurisdiction]))
 
 (defn- admission->tx [{:keys [id patient-name hours-since-procedure clinician-license-current?
                               treated? discharged?
@@ -234,25 +229,16 @@
          (map #(pull->admission (d/pull (d/db conn) admission-pull [:admission/id %])))
          (sort-by :id)))
   (credential-of [_ id]
-    (dec* (d/q '[:find ?p . :in $ ?aid
+    (ls/dec* (d/q '[:find ?p . :in $ ?aid
                 :where [?k :credential-screening/admission-id ?aid] [?k :credential-screening/payload ?p]]
               (d/db conn) id)))
   (assessment-of [_ admission-id]
-    (dec* (d/q '[:find ?p . :in $ ?aid
+    (ls/dec* (d/q '[:find ?p . :in $ ?aid
                 :where [?a :assessment/admission-id ?aid] [?a :assessment/payload ?p]]
               (d/db conn) admission-id)))
-  (ledger [_]
-    (->> (d/q '[:find ?s ?f :where [?e :ledger/seq ?s] [?e :ledger/fact ?f]] (d/db conn))
-         (sort-by first)
-         (mapv (comp dec* second))))
-  (treatment-history [_]
-    (->> (d/q '[:find ?s ?r :where [?e :treatment/seq ?s] [?e :treatment/record ?r]] (d/db conn))
-         (sort-by first)
-         (mapv (comp dec* second))))
-  (discharge-history [_]
-    (->> (d/q '[:find ?s ?r :where [?e :discharge/seq ?s] [?e :discharge/record ?r]] (d/db conn))
-         (sort-by first)
-         (mapv (comp dec* second))))
+  (ledger [_] (ls/read-stream conn :ledger/seq :ledger/fact))
+  (treatment-history [_] (ls/read-stream conn :treatment/seq :treatment/record))
+  (discharge-history [_] (ls/read-stream conn :discharge/seq :discharge/record))
   (next-treatment-sequence [_ jurisdiction]
     (or (d/q '[:find ?n . :in $ ?j
               :where [?e :treatment-sequence/jurisdiction ?j] [?e :treatment-sequence/next ?n]]
@@ -273,10 +259,10 @@
       (d/transact! conn [(admission->tx value)])
 
       :assessment/set
-      (d/transact! conn [{:assessment/admission-id (first path) :assessment/payload (enc payload)}])
+      (d/transact! conn [{:assessment/admission-id (first path) :assessment/payload (ls/enc payload)}])
 
       :credential-screening/set
-      (d/transact! conn [{:credential-screening/admission-id (first path) :credential-screening/payload (enc payload)}])
+      (d/transact! conn [{:credential-screening/admission-id (first path) :credential-screening/payload (ls/enc payload)}])
 
       :admission/mark-treated
       (let [admission-id (first path)
@@ -286,7 +272,7 @@
         (d/transact! conn
                      [(admission->tx (assoc admission-patch :id admission-id))
                       {:treatment-sequence/jurisdiction jurisdiction :treatment-sequence/next next-n}
-                      {:treatment/seq (count (treatment-history s)) :treatment/record (enc (get result "record"))}])
+                      {:treatment/seq (count (treatment-history s)) :treatment/record (ls/enc (get result "record"))}])
         result)
 
       :admission/mark-discharged
@@ -297,12 +283,12 @@
         (d/transact! conn
                      [(admission->tx (assoc admission-patch :id admission-id))
                       {:discharge-sequence/jurisdiction jurisdiction :discharge-sequence/next next-n}
-                      {:discharge/seq (count (discharge-history s)) :discharge/record (enc (get result "record"))}])
+                      {:discharge/seq (count (discharge-history s)) :discharge/record (ls/enc (get result "record"))}])
         result)
       nil)
     s)
   (append-ledger! [s fact]
-    (d/transact! conn [{:ledger/seq (count (ledger s)) :ledger/fact (enc fact)}])
+    (ls/append-blob! conn :ledger/seq :ledger/fact (count (ledger s)) fact)
     fact)
   (with-admissions [s admissions]
     (when (seq admissions) (d/transact! conn (mapv admission->tx (vals admissions)))) s))
