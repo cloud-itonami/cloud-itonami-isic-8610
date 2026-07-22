@@ -68,7 +68,40 @@
           :required-evidence ["Patienteneinwilligung/Patientenverfügung (patient consent/advance directive record)"
                               "Diagnose-/Eingriffsdokumentation (diagnostic/procedure documentation)"
                               "Ärztliche Approbationsnachweis (clinician license verification)"
-                              "Entlassungs-/Nachsorgeplan (discharge/follow-up care plan)"]}})
+                              "Entlassungs-/Nachsorgeplan (discharge/follow-up care plan)"]}
+   ;; New Zealand: verified this session against legislation.govt.nz's
+   ;; Health and Disability Services (Safety) Act 2001 ("Version as at 5
+   ;; April 2023" consolidation) and health.govt.nz's "Certification of
+   ;; health care services" + "Health and Disability Services (Safety)
+   ;; Act" pages -- both retrieved via the Wayback Machine after
+   ;; legislation.govt.nz's live site returned an AWS WAF bot-detection
+   ;; challenge (response header `x-amzn-waf-action: challenge`) to a
+   ;; direct fetch; per the no-bypass safety rule, the archived copies
+   ;; were used instead of attempting to defeat the challenge. Section 9
+   ;; (duty to be certified) and ss 26-27 (Director-General's power to
+   ;; certify) of the Act establish ONE national certification regime
+   ;; that applies uniformly to both public hospitals -- now operated by
+   ;; Health New Zealand -- Te Whatu Ora, the single national Crown
+   ;; entity that replaced the 20 District Health Boards on 1 July 2022
+   ;; -- and private hospitals: health.govt.nz's certified-provider
+   ;; database lists both under this same Act/standard (e.g. Auckland
+   ;; City Hospital and Wellington Hospital under "public hospitals";
+   ;; the Southern Cross Hospital and Mercy Hospital chains under
+   ;; "private hospitals"). So the 2022 health-system reform changed WHO
+   ;; operates public hospitals, not the certification legal basis they
+   ;; operate under -- no separate post-reform entry/legal-basis is
+   ;; needed. Every field below is a confirmed fact from those two
+   ;; sources; nothing here is invented or carried over from training
+   ;; memory alone.
+   "NZL" {:name "New Zealand"
+          :owner-authority "HealthCERT (Ministry of Health -- Manatū Hauora), administering/enforcing the Act under certification power the Act vests in the Director-General of Health"
+          :legal-basis "Health and Disability Services (Safety) Act 2001 (2001 No 93)"
+          :national-spec "Ngā Paerewa Health and Disability Services Standard (NZS 8134:2021)"
+          :provenance "https://www.health.govt.nz/regulation-legislation/certification-of-health-care-services"
+          :required-evidence ["Patient consent/advance directive record"
+                              "Diagnostic/procedure documentation"
+                              "Clinician license verification"
+                              "Discharge/follow-up care plan"]}})
 
 (defn spec-basis
   "The jurisdiction's requirement map, or nil -- nil means NO spec-basis,
