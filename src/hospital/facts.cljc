@@ -71,28 +71,31 @@
                               "Entlassungs-/Nachsorgeplan (discharge/follow-up care plan)"]}
    ;; New Zealand: verified this session against legislation.govt.nz's
    ;; Health and Disability Services (Safety) Act 2001 ("Version as at 5
-   ;; April 2023" consolidation) and health.govt.nz's "Certification of
-   ;; health care services" + "Health and Disability Services (Safety)
-   ;; Act" pages -- both retrieved via the Wayback Machine after
-   ;; legislation.govt.nz's live site returned an AWS WAF bot-detection
-   ;; challenge (response header `x-amzn-waf-action: challenge`) to a
-   ;; direct fetch; per the no-bypass safety rule, the archived copies
-   ;; were used instead of attempting to defeat the challenge. Section 9
-   ;; (duty to be certified) and ss 26-27 (Director-General's power to
-   ;; certify) of the Act establish ONE national certification regime
-   ;; that applies uniformly to both public hospitals -- now operated by
-   ;; Health New Zealand -- Te Whatu Ora, the single national Crown
-   ;; entity that replaced the 20 District Health Boards on 1 July 2022
-   ;; -- and private hospitals: health.govt.nz's certified-provider
-   ;; database lists both under this same Act/standard (e.g. Auckland
-   ;; City Hospital and Wellington Hospital under "public hospitals";
-   ;; the Southern Cross Hospital and Mercy Hospital chains under
-   ;; "private hospitals"). So the 2022 health-system reform changed WHO
-   ;; operates public hospitals, not the certification legal basis they
-   ;; operate under -- no separate post-reform entry/legal-basis is
-   ;; needed. Every field below is a confirmed fact from those two
-   ;; sources; nothing here is invented or carried over from training
-   ;; memory alone.
+   ;; April 2023" consolidation) and Pae Ora (Healthy Futures) Act 2022
+   ;; ("as at 25 October 2024" consolidation), plus health.govt.nz's
+   ;; "Certification of health care services" + "Health and Disability
+   ;; Services (Safety) Act" pages -- all retrieved via the Wayback
+   ;; Machine after legislation.govt.nz's live site returned an AWS WAF
+   ;; bot-detection challenge (response header `x-amzn-waf-action:
+   ;; challenge`) to a direct fetch; per the no-bypass safety rule, the
+   ;; archived copies were used instead of attempting to defeat the
+   ;; challenge. Section 9 (duty to be certified) and ss 26-27
+   ;; (Director-General's power to certify) of the 2001 Act establish ONE
+   ;; national certification regime that applies uniformly to both
+   ;; public hospitals -- now operated by Health New Zealand, the Crown
+   ;; agent established by s 11 of the Pae Ora Act, which came into
+   ;; force on 1 July 2022 (s 2) and on that date disestablished "all
+   ;; DHBs" (s 9) -- and private hospitals: health.govt.nz's certified-
+   ;; provider database lists both under this same Act/standard (e.g.
+   ;; Auckland City Hospital and Wellington Hospital under "public
+   ;; hospitals"; the Southern Cross Hospital and Mercy Hospital chains
+   ;; under "private hospitals"). So the 2022 health-system reform
+   ;; changed WHO operates public hospitals, not the hospital-
+   ;; certification legal basis they operate under -- no separate
+   ;; post-reform entry/legal-basis is needed. Every fact above is
+   ;; sourced from a page fetched and read this session, not training-
+   ;; data memory -- e.g. the Pae Ora Act sections read here do not
+   ;; state a specific former-DHB count, so none is asserted.
    "NZL" {:name "New Zealand"
           :owner-authority "HealthCERT (Ministry of Health -- Manatū Hauora), administering/enforcing the Act under certification power the Act vests in the Director-General of Health"
           :legal-basis "Health and Disability Services (Safety) Act 2001 (2001 No 93)"
