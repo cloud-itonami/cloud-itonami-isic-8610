@@ -240,7 +240,7 @@
      [(td "Seeded admissions" (count (store/all-admissions db)) (code "hospital.store/demo-data"))
       (td "Graph runs in this scenario" (count steps) (code "langgraph.graph/run*"))
       (td "Append-only ledger facts" (count ledger) (code "hospital.store/ledger"))
-      (td (str "<strong>HARD governor holds</strong>") (str "<strong>" (count holds) "</strong>")
+      (td "<strong>HARD governor holds</strong>" (str "<strong>" (count holds) "</strong>")
           (code ":t :governor-hold"))
       (td "Distinct HARD hold rules exercised" (count rules) (code "hospital.governor"))
       (td "Approvals requested (escalations)"
@@ -296,7 +296,7 @@
                (= :committed (:t f)) (str "<span class=\"ok\">committed</span> " (code (:op f)))
                :else "<span class=\"muted\">in progress</span>")))))))
 
-(defn- steps-section [db steps]
+(defn- steps-section [steps]
   (section
    "Scenario walk (every graph run, in order)"
    (str "One row per <code>langgraph.graph/run*</code>. <em>Human</em> reports whether the "
@@ -456,7 +456,7 @@
                     " <span class=\"warn\">(audit only; not retained in record)</span>")
                "<span class=\"critical\">no approver anywhere</span>")))))))
 
-(defn- attribution-section [db steps]
+(defn- attribution-section [db]
   (let [ledger (vec (store/ledger db))
         assessed (keep #(store/assessment-of db (:id %)) (store/all-admissions db))
         screened (keep #(store/credential-of db (:id %)) (store/all-admissions db))
@@ -645,9 +645,9 @@
    (admissions-section db)
    (holds-section db)
    (rule-coverage-section db)
-   (steps-section db steps)
+   (steps-section steps)
    (escalation-section steps)
-   (attribution-section db steps)
+   (attribution-section db)
    (assessments-section db)
    (credentials-section db)
    (registry-section
