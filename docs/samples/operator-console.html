@@ -2508,16 +2508,16 @@ img,svg { max-width: 100%; height: auto; }</style></head><body>
     <h2>HARD governor holds (this run)</h2>
     <p class="muted">One row per violation. These are <strong>not overridable</strong>: the graph routes straight from <code>:decide</code> to <code>:hold</code>, so <code>:request-approval</code> is never entered and no human is ever offered the decision. Every rule and detail string below is the governor's own output.</p>
     <table>
-      <thead><tr><th>Rule</th><th>Op</th><th>Admission</th><th>LLM confidence</th><th>Governor detail</th></tr></thead>
+      <thead><tr><th>Hold</th><th>Rule</th><th>Op</th><th>Admission</th><th>LLM confidence</th><th>Governor detail</th></tr></thead>
       <tbody>
-        <tr><td><span class="critical">no-spec-basis</span></td><td><code>:jurisdiction/assess</code></td><td><code>admission-2</code></td><td><span class="num">0.9</span></td><td>公式spec-basisの引用が無い提案は法域要件として扱えない</td></tr>
-        <tr><td><span class="critical">evidence-incomplete</span></td><td><code>:treatment/administer</code></td><td><code>admission-2</code></td><td><span class="num">0.9</span></td><td>法域の必要書類(患者同意記録/診断記録/免許確認記録/退院計画書等)が充足していない状態での提案</td></tr>
-        <tr><td><span class="critical">evidence-incomplete</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>法域の必要書類(患者同意記録/診断記録/免許確認記録/退院計画書等)が充足していない状態での提案</td></tr>
-        <tr><td><span class="critical">observation-period-insufficient</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>admission-3 の処置後経過時間(1時間)が最低観察時間(4時間)に満たない</td></tr>
-        <tr><td><span class="critical">observation-period-insufficient</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>admission-3 の処置後経過時間(1時間)が最低観察時間(4時間)に満たない</td></tr>
-        <tr><td><span class="critical">credential-not-current</span></td><td><code>:credential/screen</code></td><td><code>admission-4</code></td><td><span class="num">0.95</span></td><td>臨床医の免許が最新でない状態での治療実施/退院許可提案は進められない</td></tr>
-        <tr><td><span class="critical">already-treated</span></td><td><code>:treatment/administer</code></td><td><code>admission-1</code></td><td><span class="num">0.9</span></td><td>admission-1 は既に治療実施済み</td></tr>
-        <tr><td><span class="critical">already-discharged</span></td><td><code>:discharge/authorize</code></td><td><code>admission-1</code></td><td><span class="num">0.9</span></td><td>admission-1 は既に退院許可済み</td></tr>
+        <tr><td><span class="num">#1</span></td><td><span class="critical">no-spec-basis</span></td><td><code>:jurisdiction/assess</code></td><td><code>admission-2</code></td><td><span class="num">0.9</span></td><td>公式spec-basisの引用が無い提案は法域要件として扱えない</td></tr>
+        <tr><td><span class="num">#2</span></td><td><span class="critical">evidence-incomplete</span></td><td><code>:treatment/administer</code></td><td><code>admission-2</code></td><td><span class="num">0.9</span></td><td>法域の必要書類(患者同意記録/診断記録/免許確認記録/退院計画書等)が充足していない状態での提案</td></tr>
+        <tr><td><span class="num">#3</span> <span class="warn">2 violations at once</span></td><td><span class="critical">evidence-incomplete</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>法域の必要書類(患者同意記録/診断記録/免許確認記録/退院計画書等)が充足していない状態での提案</td></tr>
+        <tr><td><span class="num">#3</span> <span class="warn">2 violations at once</span></td><td><span class="critical">observation-period-insufficient</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>admission-3 の処置後経過時間(1時間)が最低観察時間(4時間)に満たない</td></tr>
+        <tr><td><span class="num">#4</span></td><td><span class="critical">observation-period-insufficient</span></td><td><code>:discharge/authorize</code></td><td><code>admission-3</code></td><td><span class="num">0.3</span></td><td>admission-3 の処置後経過時間(1時間)が最低観察時間(4時間)に満たない</td></tr>
+        <tr><td><span class="num">#5</span></td><td><span class="critical">credential-not-current</span></td><td><code>:credential/screen</code></td><td><code>admission-4</code></td><td><span class="num">0.95</span></td><td>臨床医の免許が最新でない状態での治療実施/退院許可提案は進められない</td></tr>
+        <tr><td><span class="num">#6</span></td><td><span class="critical">already-treated</span></td><td><code>:treatment/administer</code></td><td><code>admission-1</code></td><td><span class="num">0.9</span></td><td>admission-1 は既に治療実施済み</td></tr>
+        <tr><td><span class="num">#7</span></td><td><span class="critical">already-discharged</span></td><td><code>:discharge/authorize</code></td><td><code>admission-1</code></td><td><span class="num">0.9</span></td><td>admission-1 は既に退院許可済み</td></tr>
       </tbody>
     </table>
   </section>

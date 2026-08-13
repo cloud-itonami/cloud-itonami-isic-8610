@@ -337,14 +337,22 @@
           "straight from <code>:decide</code> to <code>:hold</code>, so "
           "<code>:request-approval</code> is never entered and no human is ever offered the "
           "decision. Every rule and detail string below is the governor's own output.")
-     ["Rule" "Op" "Admission" "LLM confidence" "Governor detail"]
-     (for [f (hold-facts ledger)
-           v (:violations f)]
-       (td (str "<span class=\"critical\">" (esc (name (:rule v))) "</span>")
-           (code (:op f))
-           (code (:subject f))
-           (str "<span class=\"num\">" (esc (:confidence f)) "</span>")
-           (esc (:detail v)))))))
+     ["Hold" "Rule" "Op" "Admission" "LLM confidence" "Governor detail"]
+     (apply concat
+            (map-indexed
+             (fn [i f]
+               (let [vs (:violations f)]
+                 (for [v vs]
+                   (td (str "<span class=\"num\">#" (inc i) "</span>"
+                            (when (< 1 (count vs))
+                              (str " <span class=\"warn\">" (count vs)
+                                   " violations at once</span>")))
+                       (str "<span class=\"critical\">" (esc (name (:rule v))) "</span>")
+                       (code (:op f))
+                       (code (:subject f))
+                       (str "<span class=\"num\">" (esc (:confidence f)) "</span>")
+                       (esc (:detail v))))))
+             (hold-facts ledger))))))
 
 (defn- rule-coverage-section [db]
   (let [holds (hold-facts (vec (store/ledger db)))
