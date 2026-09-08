@@ -32,7 +32,7 @@
   authorizing the discharge itself (that is `hospital.operation`'s
   `:treatment/administer`/`:discharge/authorize`, always human-gated
   -- see README `Actuation`)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- unsigned-certificate
   "Every certificate this actor produces is UNSIGNED -- signature is the
@@ -82,7 +82,7 @@
     (throw (ex-info "treatment-administration: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "treatment-administration: sequence must be >= 0" {})))
-  (let [administration-number (str (str/upper-case jurisdiction) "-TRT-" (zero-pad sequence 6))
+  (let [administration-number (str (str/upper jurisdiction) "-TRT-" (zero-pad sequence 6))
         record {"record_id" administration-number
                 "kind" "treatment-administration-draft"
                 "admission_id" admission-id
@@ -107,7 +107,7 @@
     (throw (ex-info "discharge-authorization: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "discharge-authorization: sequence must be >= 0" {})))
-  (let [discharge-number (str (str/upper-case jurisdiction) "-DIS-" (zero-pad sequence 6))
+  (let [discharge-number (str (str/upper jurisdiction) "-DIS-" (zero-pad sequence 6))
         record {"record_id" discharge-number
                 "kind" "discharge-authorization-draft"
                 "admission_id" admission-id
