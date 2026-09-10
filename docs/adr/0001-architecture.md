@@ -173,7 +173,7 @@ stack only, per the blueprint's own explicit statement.
   licensing concerns within the SAME broad health sector and even the
   SAME jurisdictions.
 - (+) The actuation invariant (governor + phase, two layers) is
-  regression-tested by `test/hospital/phase_test.clj`'s `treatment-
+  regression-tested by `test/hospital/phase_test.kotoba`'s `treatment-
   administer-never-auto-at-any-phase`/`discharge-authorize-never-
   auto-at-any-phase`.
 - (+) `MemStore` ‖ `DatomicStore` parity is proven by `test/hospital/
