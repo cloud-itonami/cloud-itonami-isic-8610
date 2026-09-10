@@ -50,13 +50,13 @@ Static analysis with clj-kondo. Errors fail CI; warnings pass.
 ## Where the Clinical Oversight Governor lives
 
 The **Clinical Oversight Governor** implementation is in:
-- **Primary logic:** `src/hospital/governor.cljc`
-- **Stateful actor:** `src/hospital/operation.cljc` (langgraph-clj StateGraph)
-- **Phase definitions:** `src/hospital/phase.cljc` (read-only → assisted intake → assisted assess → supervised)
+- **Primary logic:** `src/hospital/governor.kotoba`
+- **Stateful actor:** `src/hospital/operation.kotoba` (langgraph-clj StateGraph)
+- **Phase definitions:** `src/hospital/phase.kotoba` (read-only → assisted intake → assisted assess → supervised)
 
 ### The governor's role
 
-1. **Validates jurisdiction compliance** — checks that the jurisdiction and hospital-institution license citations exist in `src/hospital/facts.cljc` with an official spec-basis
+1. **Validates jurisdiction compliance** — checks that the jurisdiction and hospital-institution license citations exist in `src/hospital/facts.kotoba` with an official spec-basis
 2. **Screens clinician credentials** — verifies that the treating clinician's license is current (evaluated unconditionally)
 3. **Enforces minimum observation period** — verifies that post-procedure observation time has elapsed before authorizing discharge
 4. **Prevents double actuation** — guards against administering the same treatment twice or authorizing the same discharge twice
@@ -70,7 +70,7 @@ The **Clinical Oversight Governor** implementation is in:
 
 ## Jurisdiction coverage
 
-Hospital-institution licensing requirements are seeded in `src/hospital/facts.cljc/catalog` for 4 jurisdictions: JPN, USA, GBR, DEU. This is a starting catalog to prove the governor contract end-to-end, not a claim of global coverage.
+Hospital-institution licensing requirements are seeded in `src/hospital/facts.kotoba/catalog` for 4 jurisdictions: JPN, USA, GBR, DEU. This is a starting catalog to prove the governor contract end-to-end, not a claim of global coverage.
 
 **Adding a jurisdiction is additive:** one map entry in `hospital.facts/catalog`, citing a real official source — never fabricate a jurisdiction's requirements to make coverage look bigger.
 

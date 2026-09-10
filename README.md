@@ -89,7 +89,7 @@ layers enforce this (`hospital.governor`'s `:actuation/administer-
 treatment`/`:actuation/authorize-discharge` high-stakes gate and
 `hospital.phase`'s phase table, which never puts `:treatment/
 administer`/`:discharge/authorize` in any phase's `:auto` set) -- see
-`hospital.phase`'s docstring and `test/hospital/phase_test.clj`'s
+`hospital.phase`'s docstring and `test/hospital/phase_test.kotoba`'s
 `treatment-administer-never-auto-at-any-phase`/`discharge-authorize-
 never-auto-at-any-phase`. The actor may draft, check and recommend; a
 human licensed clinician is always the one who actually administers a
@@ -175,14 +175,14 @@ lib to reference at all.
 
 | File | Role |
 |---|---|
-| `src/hospital/store.cljc` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate treatment-administration/discharge-authorization history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded admission, and the double-administration/double-discharge guards check dedicated `:treated?`/`:discharged?` booleans rather than a `:status` value |
-| `src/hospital/registry.cljc` | Treatment-administration + discharge-authorization draft records, plus `observation-period-elapsed?`/`minimum-observation-hours` -- the THIRD instance of this fleet's MINIMUM-threshold temporal-sufficiency shape (`veterinary`/`funeral` established the first two), applied UNCONDITIONALLY (every discharge needs the same minimum observation window) |
-| `src/hospital/facts.cljc` | Per-jurisdiction hospital-institution licensing catalog with an official spec-basis citation per entry, honest coverage reporting -- INSTITUTIONAL regulators, distinct from `clinic.facts`'s individual-practitioner-licensing bodies |
-| `src/hospital/hospitalopsllm.cljc` | **HospitalOps-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/credential-screening/treatment-administration/discharge-authorization proposals |
-| `src/hospital/governor.cljc` | **Clinical Oversight Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · observation-period-insufficient, pure ground-truth MINIMUM-threshold recompute · credential-not-current, unconditional evaluation, the SIXTEENTH grounding of this discipline and THIRD specifically for the credential-not-current concept) + already-treated/already-discharged guards + 1 soft (confidence/actuation gate) |
-| `src/hospital/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess → supervised (both administration and discharge always human; admission intake is the ONLY auto-eligible op, no direct capital risk) |
-| `src/hospital/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
-| `src/hospital/sim.cljc` | demo driver |
+| `src/hospital/store.kotoba` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate treatment-administration/discharge-authorization history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded admission, and the double-administration/double-discharge guards check dedicated `:treated?`/`:discharged?` booleans rather than a `:status` value |
+| `src/hospital/registry.kotoba` | Treatment-administration + discharge-authorization draft records, plus `observation-period-elapsed?`/`minimum-observation-hours` -- the THIRD instance of this fleet's MINIMUM-threshold temporal-sufficiency shape (`veterinary`/`funeral` established the first two), applied UNCONDITIONALLY (every discharge needs the same minimum observation window) |
+| `src/hospital/facts.kotoba` | Per-jurisdiction hospital-institution licensing catalog with an official spec-basis citation per entry, honest coverage reporting -- INSTITUTIONAL regulators, distinct from `clinic.facts`'s individual-practitioner-licensing bodies |
+| `src/hospital/hospitalopsllm.kotoba` | **HospitalOps-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/credential-screening/treatment-administration/discharge-authorization proposals |
+| `src/hospital/governor.kotoba` | **Clinical Oversight Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · observation-period-insufficient, pure ground-truth MINIMUM-threshold recompute · credential-not-current, unconditional evaluation, the SIXTEENTH grounding of this discipline and THIRD specifically for the credential-not-current concept) + already-treated/already-discharged guards + 1 soft (confidence/actuation gate) |
+| `src/hospital/phase.kotoba` | **Phase 0→3** -- read-only → assisted intake → assisted assess → supervised (both administration and discharge always human; admission intake is the ONLY auto-eligible op, no direct capital risk) |
+| `src/hospital/operation.kotoba` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/hospital/sim.kotoba` | demo driver |
 | `test/hospital/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage |
 
 ## Business-process coverage (honest)
