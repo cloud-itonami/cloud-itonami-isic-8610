@@ -15,7 +15,7 @@ This is **not** for building a generic hospital SaaS. This is for licensed opera
 ## Run the demo
 
 ```bash
-clojure -M:dev:run
+kbb -M:dev:run
 ```
 
 This walks two clean admission lifecycles (treatment administration → discharge authorization) plus five HARD-hold cases through the OperationActor. The output shows:
@@ -29,7 +29,7 @@ This is the fastest way to understand the governor contract in action.
 ## Run tests
 
 ```bash
-clojure -M:dev:test
+kbb -M:dev:test
 ```
 
 Tests verify:
@@ -42,7 +42,7 @@ Tests verify:
 ## Run linting
 
 ```bash
-clojure -M:lint
+kbb -M:lint
 ```
 
 Static analysis with clj-kondo. Errors fail CI; warnings pass.
@@ -74,7 +74,7 @@ Hospital-institution licensing requirements are seeded in `src/hospital/facts.ko
 
 **Adding a jurisdiction is additive:** one map entry in `hospital.facts/catalog`, citing a real official source — never fabricate a jurisdiction's requirements to make coverage look bigger.
 
-Run `clojure -M:dev:run` and check the coverage report in the output to see how many requested jurisdictions have official spec-basis citations.
+Run `kbb -M:dev:run` and check the coverage report in the output to see how many requested jurisdictions have official spec-basis citations.
 
 ## Deployment options
 
@@ -91,7 +91,7 @@ Run `clojure -M:dev:run` and check the coverage report in the output to see how 
 
 ## Next steps
 
-1. Run `clojure -M:dev:run` to see the actor in action
+1. Run `kbb -M:dev:run` to see the actor in action
 2. Read `README.md` for the full architecture and design rationale
 3. Read `docs/business-model.md` for customer profiles and open business model
 4. Read `docs/operator-guide.md` for production deployment checklist
