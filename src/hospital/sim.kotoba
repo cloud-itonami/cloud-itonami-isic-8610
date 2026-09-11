@@ -1,5 +1,5 @@
 (ns hospital.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean admission
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean admission
   through intake -> jurisdiction assessment -> credential screening ->
   treatment-administration proposal (always escalates) -> human
   approval -> commit, then through discharge-authorization proposal
