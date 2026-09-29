@@ -22,7 +22,7 @@
         io.github.kotoba-lang/langchain-store
         {:local/root "../../kotoba-lang/langchain-store"}
         ;; jp-go-digital-design-system (DADS) -- the workspace's BASE design
-        ;; system (CLAUDE.md, 2026-08-05). Used ONLY by the build-time
+        ;; system (AGENTS.md, 2026-08-05). Used ONLY by the build-time
         ;; console renderer, for the same vendored CSS `docs/index.html`
         ;; already ships; no new UI stack is introduced.
         io.github.kotoba-lang/jp-go-digital-design-system
